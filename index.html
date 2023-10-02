@@ -8,15 +8,15 @@
 </head>
 <body>
     <h1>Formulario de Registro</h1>
-    <form id="registro-form">
+    <form method="post" id="formulario">
         <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required><br>
+        <input type="text" id="name" name="name" autocomplete="on" required><br>
 
         <label for="lastname">Apellido:</label>
-        <input type="text" id="lastname" name="lastname" required><br>
+        <input type="text" id="lastname" name="lastname" autocomplete="on" required><br>
 
         <label for="birthday">Nacimiento:</label>
-        <input type="date" id="birthday" name="birthday" required><br>
+        <input type="date" id="birthday" name="birthday" autocomplete="on" required><br>
 
         <input type="submit" value="Registrarse">
     </form>

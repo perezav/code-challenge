@@ -1,33 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const formulario = document.getElementById("registro-form");
-    const respuestaDiv = document.getElementById("response");
+    const url = "https://jsonplaceholder.typicode.com/users";
+    const formulario = document.getElementById("formulario");
 
     formulario.addEventListener("submit", function (event) {
         event.preventDefault();
 
         const nombre = document.getElementById("name").value;
         const apellido = document.getElementById("lastname").value;
-        const fechaNacimiento = document.getElementById("birthday").value;
+        const nacimiento = document.getElementById("birthday").value;
 
         const datos = {
-            nombre: nombre,
-            apellido: apellido,
-            fechaNacimiento: fechaNacimiento,
+            name: nombre,
+            lastname: apellido,
+            birthday: nacimiento
         };
 
-        fetch("https://jsonplaceholder.typicode.com/users", {
-            method: "POST",
+        const opciones = {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(datos),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                respuestaDiv.innerHTML = `Respuesta del servidor: <pre>${JSON.stringify(data, null, 2)}</pre>`;
+            body: JSON.stringify(datos)
+        };
+
+        fetch(url, opciones)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Error en la solicitud');
+                }
             })
-            .catch((error) => {
-                respuestaDiv.innerHTML = `Error: ${error.message}`;
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
             });
     });
 });
